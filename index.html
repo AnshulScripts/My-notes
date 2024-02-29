@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Website</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>My Notes Website</h1>
+    </header>
+    <main>
+        <form id="note-form">
+            <label for="note-title">Note Title:</label>
+            <input type="text" id="note-title" required>
+            <label for="note-content">Note Content:</label>
+            <textarea id="note-content" required></textarea>
+            <button type="submit">Create Note</button>
+        </form>
+        <div id="notes-container"></div>
+    </main>
+    <script>
+        document.getElementById('note-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const noteTitle = document.getElementById('note-title').value;
+            const noteContent = document.getElementById('note-content').value;
+
+            if (!noteTitle || !noteContent) {
+                alert('Please fill in both the note title and content.');
+                return;
+            }
+
+            const note = document.createElement('div');
+            note.classList.add('note');
+
+            const noteTitleElement = document.createElement('h2');
+            noteTitleElement.textContent = noteTitle;
+
+            const noteContentElement = document.createElement('p');
+            noteContentElement.textContent = noteContent;
+
+            note.appendChild(noteTitleElement);
+            note.appendChild(noteContentElement);
+
+            document.getElementById('notes-container').appendChild(note);
+
+            document.getElementById('note-form').reset();
+        });
+    </script>
+</body>
+</html>
